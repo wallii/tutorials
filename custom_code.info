@@ -1,0 +1,4 @@
+name = custom
+description = This module is for custom code
+core = 7.x
+scripts[] = js/customregis.js
