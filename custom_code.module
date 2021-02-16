@@ -3,8 +3,13 @@ function custom_code_form_alter(&$form, &$form_state, $form_id) {
 	 
 	
 	if($form_id == 'inventory_node_form') {
-		 
-		 
+		
+		$form['actions']['reset'] = array(
+			'#type' => 'submit',
+			'#value' => t('Reset'),
+			'#weight' => -10,
+			'#submit' => array('costom_code_inventory_reset'),
+		);
 		
 		$form['actions']['reset'] = array(
 			'#type' => 'submit',
@@ -24,10 +29,12 @@ function custom_code_form_alter(&$form, &$form_state, $form_id) {
 			$num_of_results = $result11->rowCount();
 			$res = $num_of_results+1;
 				$form["field_item"]['und'][0]['value']['#default_value'] = $res;
-			}
+		}
+		
+		$form['field_room']['und'][0]['value']['#autocomplete_path'] = 'custom_code_autocomplete_engine';
 			
 			
-		} 
+	} 
 	
  
 }
@@ -49,6 +56,48 @@ function custom_code_date_popup_process_alter(&$element, &$form_state, &$context
 function costom_code_inventory_reset($form, &$form_state) {
 	
 	$form_state['rebuild'] = FALSE;
+	
+}
+
+
+function custom_code_menu() {
+	$items['custom_code_autocomplete_engine'] = array(
+	'page callback' => 'custom_code_autocomplete',
+	'access arguments' => array('access content'),
+	'type' => MENU_CALLBACK,
+	);
+  return $items;
+}
+function custom_code_autocomplete($text = '') {
+	
+
+	global $user;
+	$curtuid = $user->uid;
+	$query11 = db_select('node', 'ns');
+	$query11->fields('ns', array('nid'));
+	$query11->condition('ns.uid', $curtuid);
+	$query11->condition('ns.status', 1);
+	$result11 = $query11->execute();
+	foreach ($result11 as $value) {
+
+	$data2[] = $value->nid;
+	}
+
+
+	$query2 = db_select('field_data_field_room', 'nr');
+	$query2->fields('nr', array('field_room_value'));
+	$query2->condition('nr.entity_id', $data2, 'IN');
+	$query21 = $query2->execute();
+	foreach ($query21 as $value1) {
+
+	$data21[] = $value1->field_room_value;
+	}
+
+
+		
+
+ 
+  drupal_json_output($data21);
 	
 }
 
