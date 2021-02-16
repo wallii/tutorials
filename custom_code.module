@@ -3,7 +3,16 @@ function custom_code_form_alter(&$form, &$form_state, $form_id) {
 	 
 	
 	if($form_id == 'inventory_node_form') {
-		 drupal_add_js(drupal_get_path('module', 'custom_code') . '/js/custom_code.js');
+		 
+		 
+		
+		$form['actions']['reset'] = array(
+			'#type' => 'submit',
+			'#value' => t('Reset'),
+			'#weight' => -10,
+			'#submit' => array('costom_code_inventory_reset'),
+		);
+
 		if(!isset($_GET['destination'])) {
 			global $user;
 			$curtuid = $user->uid;
@@ -36,6 +45,13 @@ function custom_code_date_popup_process_alter(&$element, &$form_state, &$context
     }
   }
 }
+
+function costom_code_inventory_reset($form, &$form_state) {
+	
+	$form_state['rebuild'] = FALSE;
+	
+}
+
 
 
 
