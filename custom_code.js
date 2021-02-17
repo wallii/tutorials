@@ -60,7 +60,7 @@ jQuery(document).ready(function(){
               jQuery('#errorpass').html('');			
 		 }
 		 
-		 var finalvalue = fquantity*forigcost+(ftaxrate*(fquantity*forigcost));
+		 var finalvalue = fquantity*forigcost+(ftaxrate/100*(fquantity*forigcost));
 		jQuery("#inventory-node-form #edit-field-total-cost-und-0-value").val(finalvalue); 
         		 
 	 });
