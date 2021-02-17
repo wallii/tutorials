@@ -64,6 +64,22 @@ jQuery(document).ready(function(){
 		jQuery("#inventory-node-form #edit-field-total-cost-und-0-value").val(finalvalue); 
         		 
 	 });
+	 
+	 jQuery('#inventory-node-form #edit-field-room-und-0-value').attr("list","hidennroomid");
+	 jQuery('#inventory-node-form #edit-field-room-und-0-value').after('<datalist id="hidennroomid"></datalist>');
+	 var hinndenroomval = jQuery("#roomhiddenval").val();
+	 var res = hinndenroomval.split(" ");
+	 var length = res.length;
+	 //console.log(res);
+	 //console.log(length);
+	 for (i = 0; i <=length-1; i++) {
+		 
+		 jQuery("#hidennroomid").append("<option value='" + 
+                res[i]+ "'></option>");
+		 
+		// console.log([res[i]]);
+	 }
+	 
 	
 
 });
