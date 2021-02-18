@@ -29,7 +29,7 @@ function custom_code_form_alter(&$form, &$form_state, $form_id) {
 			$num_of_results = $result11->rowCount();
 			$res = $num_of_results+1;
 				$form["field_item"]['und'][0]['value']['#default_value'] = $res;
-		}
+		
 		
 		
 		
@@ -62,7 +62,7 @@ function custom_code_form_alter(&$form, &$form_state, $form_id) {
 		'#value' => $data21,
 		 );
 			
-			
+	   }	
 	} 
 	
  
