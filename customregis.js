@@ -5,8 +5,30 @@
 	    var fv = localStorage.getItem("srteetaddr");
 		$("#edit-field-street-address-ph-und-0-value").val(fv);
 		
+		 var cityaddrv = localStorage.getItem("cityaddr");
+	     $("#edit-field-city-ph-und-0-value").val(cityaddrv);
+		 
+		  var postelcodeaddrv = localStorage.getItem("postelcodeaddr");
+		  $("#edit-field-postal-code-ph-und-0-value").val(postelcodeaddrv);
+		  
+		  var proviaddrv = localStorage.getItem("proviaddr");
+		  $("#edit-field-province-ph-und").val(proviaddrv);
+		  
+		  var fnameaddrv = localStorage.getItem("fnameaddr");
+		  var mnameaddrv = localStorage.getItem("mnameaddr");
+		  var lnameaddrv = localStorage.getItem("lnameaddr");
+		  if(mnameaddrv !='') {
+			 var fmnavf = fnameaddrv+' '+ mnameaddrv + ' '+ lnameaddrv; 
+		  } else {
+			   var fmnavf = fnameaddrv+' '+ mnameaddrv + ' '+ lnameaddrv; 
+		  }
+		  
+		  
+		  $("#edit-field-name-of-policy-holder-und-0-value").val(fmnavf);
+		  
+		
 	    $('#edit-field-expiry-date-und-0-value-datepicker-popup-0').attr('readonly', 'true'); 
-		$('#edit-field-expiry-date-und-0-value-datepicker-popup-0').val('');
+		//$('#edit-field-expiry-date-und-0-value-datepicker-popup-0').val('');
 		$("#edit-field-effective-date-und-0-value-datepicker-popup-1").change(function(){
 			
 			var dat = $("#edit-field-effective-date-und-0-value-datepicker-popup-1").val();
@@ -31,12 +53,45 @@
 			 $('div').remove(".errordiv");
 			 $("#edit-field-re-enter-password-und-0-value").css("border", ""); 
 		  }
-		   var df = $("#edit-field-street-address-mi-und-0-value").val();
+		   var hello = localStorage.getItem("srteetaddr");
+		   var dfw = $("#edit-field-street-address-mi-und-0-value").val();
 		   
-		   if(df !='') {
-			  localStorage.setItem("srteetaddr", df);
+		   var cityp = $("#edit-field-city-mi-und-0-value").val();
+		   var proviencef = $("#edit-field-province-und").val();
+		   var postelcodef = $("#edit-field-postal-code-mi-und-0-value").val();
+		   var fnamef = $("#edit-field-full-name-und-0-value").val();
+		   var mnamef = $("#edit-field-middle-name-und-0-value").val();
+		   var lnamef = $("#edit-field-lastr-name-und-0-value").val();
+		 
+		   if(dfw != undefined) {
+			  localStorage.setItem("srteetaddr", dfw);
 			  
 		   }
+		   if(cityp != undefined) {
+			  localStorage.setItem("cityaddr", cityp);
+			  
+		   }
+		   if(proviencef != undefined) {
+			  localStorage.setItem("proviaddr", proviencef);
+			  
+		   }
+		   if(postelcodef != undefined) {
+			  localStorage.setItem("postelcodeaddr", postelcodef);
+			  
+		   }
+		   if(fnamef != undefined) {
+			  localStorage.setItem("fnameaddr", fnamef);
+			  
+		   }
+		   if(mnamef != undefined) {
+			  localStorage.setItem("mnameaddr", mnamef);
+			  
+		   }
+		   if(lnamef != undefined) {
+			  localStorage.setItem("lnameaddr", lnamef);
+			  
+		   }
+		  
 		 
 		  
 	  });
