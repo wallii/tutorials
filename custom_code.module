@@ -1,7 +1,11 @@
 <?php
 function custom_code_form_alter(&$form, &$form_state, $form_id) {
 	 
-	
+	 if($form_id == 'registration_form_node_form') {
+		 
+		  $form['#validate'][] = 'starting_drupal_dev_form_validate';
+		 
+	 }
 	if($form_id == 'inventory_node_form') {
 		
 		
@@ -82,5 +86,20 @@ function costom_code_inventory_reset($form, &$form_state) {
 	$form_state['rebuild'] = FALSE;
 	
 }
+
+function starting_drupal_dev_form_validate($form, &$form_state) {
+	$valss = $form_state['input']['field_email_mem_info']['und'][0]['email'];
+	$query11 = db_select('field_data_field_email_mem_info', 'emaild');
+	$query11->fields('emaild', array('bundle'));
+	$query11->condition('emaild.field_email_mem_info_email', $valss);
+	$result11 = $query11->execute();
+	$num_of_results = $result11->rowCount();
+	if($num_of_results > 0) {
+		form_set_error('Email', t('Email id already register'));
+	}
+	
+	
+}
+
 
 ?>
