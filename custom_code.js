@@ -79,7 +79,16 @@ jQuery(document).ready(function(){
 		 
 		// console.log([res[i]]);
 	 }
+	 /*
+	   default subcategory on inventory list  page
+	 */
+	  var lengthhh =  jQuery('.form-item-field-category-tid').children('div').length;
+	  console.log(lengthhh);
+	  jQuery('.form-item-field-category-tid .select-wrapper').after('<div class="select-wrapper"><label></label><select class="form-select simpler-select"><option value="_none" data-parent-value="18">- Please select -</option></select></div>');
 	 
+	 /*
+	    Code End.
+	 */
 	
 
 });
