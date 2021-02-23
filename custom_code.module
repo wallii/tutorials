@@ -8,14 +8,23 @@ function custom_code_form_alter(&$form, &$form_state, $form_id) {
 	 }
 	if($form_id == 'inventory_node_form') {
 		
-		
-		
-		$form['actions']['reset'] = array(
+		if(!isset($_GET['destination'])) {
+			$form['actions']['reset'] = array(
 			'#type' => 'submit',
 			'#value' => t('Reset'),
 			'#weight' => -10,
 			'#submit' => array('costom_code_inventory_reset'),
-		);
+		   );
+		}
+		
+		if(isset($_GET['destination'])) {
+			$form['actions']['reset'] = array(
+			'#type' => 'submit',
+			'#value' => t('Cancel'),
+			'#weight' => -10,
+			'#submit' => array('costom_code_inventory_reset'),
+		   );
+		}
 
 		if(!isset($_GET['destination'])) {
 			global $user;
@@ -88,18 +97,23 @@ function costom_code_inventory_reset($form, &$form_state) {
 }
 
 function starting_registraion_email_validate($form, &$form_state) {
-	$valss = $form_state['input']['field_email_mem_info']['und'][0]['email'];
-	$query11 = db_select('field_data_field_email_mem_info', 'emaild');
-	$query11->fields('emaild', array('bundle'));
-	$query11->condition('emaild.field_email_mem_info_email', $valss);
-	$result11 = $query11->execute();
-	$num_of_results = $result11->rowCount();
-	if($num_of_results > 0) {
-		form_set_error('Email', t('Email id already register'));
+	
+	if(isset($form_state['input']['field_email_mem_info'])) {
+		$valss = $form_state['input']['field_email_mem_info']['und'][0]['email'];
+		$query11 = db_select('field_data_field_email_mem_info', 'emaild');
+		$query11->fields('emaild', array('bundle'));
+		$query11->condition('emaild.field_email_mem_info_email', $valss);
+		$result11 = $query11->execute();
+		$num_of_results = $result11->rowCount();
+		if($num_of_results > 0) {
+			form_set_error('Email', t('Email id already register'));
+		}
+		
 	}
 	
 	
+	
+	
 }
-
 
 ?>
