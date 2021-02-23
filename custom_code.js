@@ -86,7 +86,20 @@ jQuery(document).ready(function(){
 	  console.log(lengthhh);
 	  jQuery('.form-item-field-category-tid .select-wrapper').after('<div class="select-wrapper"><label></label><select class="form-select simpler-select"><option value="_none" data-parent-value="18">- Please select -</option></select></div>');
 	 
-	 /*
+		jQuery(document).ajaxComplete(function() {
+		  var ght = jQuery('.form-item-field-category-tid .simpler-select').val();
+		   if(ght =='_none') {
+			  jQuery('.form-item-field-category-tid .select-wrapper').after('<div class="select-wrapper"><label></label><select class="form-select simpler-select"><option value="_none" data-parent-value="18">- Please select -</option></select></div>'); 
+		   }
+		});
+		jQuery(".form-item-field-category-tid .simpler-select").change(function(){
+			var ght = jQuery('.form-item-field-category-tid .simpler-select').val();
+			 if(ght =='_none') {
+			  jQuery('.form-item-field-category-tid .select-wrapper').after('<div class="select-wrapper"><label></label><select class="form-select simpler-select"><option value="_none" data-parent-value="18">- Please select -</option></select></div>'); 
+		   }
+		});
+	
+	/*
 	    Code End.
 	 */
 	
