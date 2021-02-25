@@ -61,9 +61,122 @@ jQuery(document).ready(function(){
 		 }
 		 
 		 var finalvalue = fquantity*forigcost+(ftaxrate/100*(fquantity*forigcost));
-		jQuery("#inventory-node-form #edit-field-total-cost-und-0-value").val(finalvalue); 
+		 var finalcurrc = formatCurrency(finalvalue);
+		
+		 
+		
+		jQuery("#inventory-node-form #edit-field-total-cost-und-0-value").val(finalcurrc); 
         		 
 	 });
+	 
+	 /*   */
+	   jQuery("#inventory-node-form #edit-field-quantity-und-0-value").change(function(){
+		   
+		 var getquantity = jQuery("#inventory-node-form #edit-field-quantity-und-0-value").val();
+         var fquantity = parseInt(getquantity);
+		 var taxrate = jQuery("#inventory-node-form #edit-field-tax-und-0-value").val();
+		 var ftaxrate = parseInt(taxrate);
+		 var getorigcost = jQuery("#inventory-node-form #edit-field-original-cost-und-0-value").val();
+		 var forigcost = parseInt(getorigcost);	
+		 if(!isNaN(fquantity) && !isNaN(ftaxrate) && !isNaN(forigcost)) {
+		var finalvalue = fquantity*forigcost+(ftaxrate/100*(fquantity*forigcost));
+		 var finalcurrc = formatCurrency(finalvalue);
+		 jQuery("#inventory-node-form #edit-field-total-cost-und-0-value").val(finalcurrc); 
+		
+		}	
+        		 
+	   });
+	   
+	   jQuery("#inventory-node-form #edit-field-quantity-und-0-value").keyup(function(){
+		   
+		 var getquantity = jQuery("#inventory-node-form #edit-field-quantity-und-0-value").val();
+         var fquantity = parseInt(getquantity);
+		 var taxrate = jQuery("#inventory-node-form #edit-field-tax-und-0-value").val();
+		 var ftaxrate = parseInt(taxrate);
+		 var getorigcost = jQuery("#inventory-node-form #edit-field-original-cost-und-0-value").val();
+		 var forigcost = parseInt(getorigcost);	
+		 if(!isNaN(fquantity) && !isNaN(ftaxrate) && !isNaN(forigcost)) {
+			// alert(123);
+		 var finalvalue = fquantity*forigcost+(ftaxrate/100*(fquantity*forigcost));
+		 var finalvalue = fquantity*forigcost+(ftaxrate/100*(fquantity*forigcost));
+		 var finalcurrc = formatCurrency(finalvalue);
+		 jQuery("#inventory-node-form #edit-field-total-cost-und-0-value").val(finalcurrc); 
+		
+		}	
+        		 
+	   });
+	   jQuery("#inventory-node-form #edit-field-original-cost-und-0-value").keyup(function(){
+		   
+		 var getquantity = jQuery("#inventory-node-form #edit-field-quantity-und-0-value").val();
+         var fquantity = parseInt(getquantity);
+		 var taxrate = jQuery("#inventory-node-form #edit-field-tax-und-0-value").val();
+		 var ftaxrate = parseInt(taxrate);
+		 var getorigcost = jQuery("#inventory-node-form #edit-field-original-cost-und-0-value").val();
+		 var forigcost = parseInt(getorigcost);	
+		 if(!isNaN(fquantity) && !isNaN(ftaxrate) && !isNaN(forigcost)) {
+			var finalvalue = fquantity*forigcost+(ftaxrate/100*(fquantity*forigcost));
+		 var finalcurrc = formatCurrency(finalvalue);
+		 jQuery("#inventory-node-form #edit-field-total-cost-und-0-value").val(finalcurrc); 
+		
+		}	
+        		 
+	   });
+	    jQuery("#inventory-node-form #edit-field-tax-und-0-value").keyup(function(){
+			
+		var taxrate = jQuery("#inventory-node-form #edit-field-tax-und-0-value").val();
+		var ftaxrate = parseInt(taxrate);
+		var getquantity = jQuery("#inventory-node-form #edit-field-quantity-und-0-value").val();
+        var fquantity = parseInt(getquantity);
+          if(isNaN(fquantity)) {
+			  jQuery("#inventory-node-form #edit-field-quantity-und-0-value").css("border", "1px solid red");
+			  jQuery('#errorpass').html('Kindly Enter Quantity');
+			  jQuery("#inventory-node-form #edit-field-tax-und-0-value").val(''); 
+			  $(".errordiv").css("background-color", "#FF898D");
+			  $(".errordiv").css("border", "1px solid #000;");
+			  return false;
+		  }
+         if(!isNaN(fquantity)) {
+			jQuery("#inventory-node-form #edit-field-quantity-und-0-value").css("border", "");
+             jQuery('#errorpass').html('');			
+		 }
+          var getorigcost = jQuery("#inventory-node-form #edit-field-original-cost-und-0-value").val();
+		  var forigcost = parseInt(getorigcost);
+		  if(isNaN(forigcost)) {
+			  jQuery("#inventory-node-form #edit-field-original-cost-und-0-value").css("border", "1px solid red");
+			  jQuery('#errorpass').html('Kindly Enter Original Cost');
+			  jQuery("#inventory-node-form #edit-field-tax-und-0-value").val(''); 
+			  $(".errordiv").css("background-color", "#FF898D");
+			  $(".errordiv").css("border", "1px solid #000;");
+			  return false;
+		  }
+         if(!isNaN(forigcost)) {
+			jQuery("#inventory-node-form #edit-field-original-cost-und-0-value").css("border", "");
+              jQuery('#errorpass').html('');			
+		 }
+		 
+		var finalvalue = fquantity*forigcost+(ftaxrate/100*(fquantity*forigcost));
+		 var finalcurrc = formatCurrency(finalvalue);
+		 jQuery("#inventory-node-form #edit-field-total-cost-und-0-value").val(finalcurrc); 
+        		 
+	 });
+	 
+	 
+	function formatCurrency(total) {
+		var neg = false;
+		if(total < 0) {
+			neg = true;
+			total = Math.abs(total);
+		}
+		return (neg ? "-$" : '$') + parseFloat(total, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString();
+	}
+	 
+	 /*   */
+	 
+	 
+	 
+	 
+	 
+	 
 	 
 	 jQuery('#inventory-node-form #edit-field-room-und-0-value').attr("list","hidennroomid");
 	 jQuery('#inventory-node-form #edit-field-room-und-0-value').after('<datalist id="hidennroomid"></datalist>');
