@@ -62,6 +62,13 @@
 		   var fnamef = $("#edit-field-full-name-und-0-value").val();
 		   var mnamef = $("#edit-field-middle-name-und-0-value").val();
 		   var lnamef = $("#edit-field-lastr-name-und-0-value").val();
+		   
+		   var membertype = $("#edit-field-member-type-und").val();
+		   
+		   if(membertype != undefined) {
+			  localStorage.setItem("membertypeva", membertype);
+			  
+		   }
 		 
 		   if(dfw != undefined) {
 			  localStorage.setItem("srteetaddr", dfw);
@@ -106,7 +113,13 @@
 		   if(nextVal == 'Next') {
 			 $("#edit-submit").hide();   
 		   }
-		
+		  var proviaddrv = parseInt(localStorage.getItem("membertypeva"));
+		  var stepname = $('.step-brokerage-agency h3').html();
+		  if(proviaddrv == 24  && stepname == 'Brokerage/Agency/Directwriter') {
+			  $('#edit-next').hide();
+			  $("#edit-submit").show();  
+			  
+		  }
 		/*
 		  *******************************************************************************************************
 		*/
